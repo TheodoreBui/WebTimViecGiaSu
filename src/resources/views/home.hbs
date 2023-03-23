@@ -1,0 +1,31 @@
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-2">
+
+        </div>
+
+        <div class="col-lg-10 cars">
+            {{#each cars}}
+            <div class="col-sm-6 col-lg-4" >
+                <div class="card mt-4">
+                    <a href="/courses/{{this.slug}}">
+                        <img src="http://img.youtube.com/vi/{{this.videoId}}/maxresdefault.jpg" class="card-img-top"
+                            alt="{{this.name}}">
+                    </a>
+                    <div class="card-body">
+                        <a href="/courses/{{this.slug}}" style="text-decoration: none;">
+                            <h5 class="card-title">{{this.ten}}</h5>
+                        </a>
+                        <div class="row">
+                            <p class="col-sm-6">Giá từ: {{this.gia}}đ</p>
+                        <p class="col-sm-6">Tại: {{this.diachi}}</p>
+                        </div>
+                        
+                        <a href="#" class="btn btn-primary">Thêm thông tin chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

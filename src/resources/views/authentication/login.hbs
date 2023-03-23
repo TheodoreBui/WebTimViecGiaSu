@@ -1,0 +1,45 @@
+<div class="box-form">
+    <div class="left">
+        <div class="overlay">
+            <h1>Thế giới xe</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Curabitur et est sed felis aliquet sollicitudin</p>
+            <span>
+                <p>login with social media</p>
+                <a href="#">Login with Facebook</a>
+                <a href="#">Login with Twitter</a>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="right">
+        <form action="/login" method="POST">
+            <h5>Login</h5>
+            <p>Don't have an account? <a href="/register">Creat Your Account</a> it takes less than a minute</p>
+            {{#if error}}
+                <div class="alert alert-secondary" role="alert">{{error}}</div>
+            {{/if}}
+            <div class="inputs">
+                <input type="text" placeholder="Tài khoản(sđt)" name="sdt" value="{{sdt}}">
+                <br>
+                <input type="password" placeholder="Mật khẩu" name="password" value="{{password}}">
+            </div>
+
+            <br><br>
+
+            <div class="remember-me--forget-password">
+                <!-- Angular -->
+                <label>
+                    <input type="checkbox" name="item" checked />
+                    <span class="text-checkbox">Remember me</span>
+                </label>
+                <p>forget password?</p>
+            </div>
+
+            <br>
+            <button type="submit">Đăng nhập</button>
+        </form>
+    </div>
+
+</div>

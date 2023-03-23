@@ -1,0 +1,38 @@
+{
+  "name": "webtimviecgiasu",
+  "version": "1.0.0",
+  "description": "Thực tập cơ sở",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/ "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheodoreBui/WebTimViecGiaSu.git"
+  },
+  "keywords": [
+    "tìm việc gia sư",
+    "thực tập cơ sở"
+  ],
+  "author": "TheodoreBui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheodoreBui/WebTimViecGiaSu/issues"
+  },
+  "homepage": "https://github.com/TheodoreBui/WebTimViecGiaSu#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.2",
+    "mongoose": "^7.0.2",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-slug-generator": "^1.0.4",
+    "node-sass": "^8.0.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.21"
+  }
+}
