@@ -7,11 +7,14 @@ const path = require('path');
 const route = require('./routes/index')
 const db = require('./config/db/index')
 const cookieParser = require('cookie-parser')
-
+const methodOverride = require('method-override')
 
 app.use(cookieParser())
 
 db.connect();
+
+app.use(methodOverride('_method'))
+
 
 app.use(
     express.urlencoded({

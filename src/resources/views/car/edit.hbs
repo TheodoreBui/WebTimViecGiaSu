@@ -1,0 +1,75 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="signup-wrapper shadow-box">
+            <div class="company-details ">
+                <div class="shadow"></div>
+                <div class="wrapper-1">
+                    <div class="logo">
+                        <div class="icon-food">
+
+                        </div>
+                    </div>
+                    <h1 class="title">cupcar co.</h1>
+                    <div class="slogan">We deliver cupcar to you.</div>
+                </div>
+            </div>
+
+
+            <div class="signup-form ">
+                <div class="wrapper-2">
+                    <div class="form-title">EDIT NOW</div>
+                    <div class="form">
+                        <form action="/car/edit/{{car._id}}?_method=PUT" method="POST">
+                            <p class="content-item">
+                                <label>Tên xe
+                                    <input type="text" placeholder="Ví dụ: Lx 570" name="tenxe" readonly value="{{car.tenxe}}" >
+                                </label>
+                            </p>
+                            <p class="content-item">
+                                <label>Sản xuất năm
+                                    <input type="text" placeholder="Ví dụ: 2018" name="namsx" readonly value="{{car.namsx}}">
+                                </label>
+                            </p>
+
+                            <p class="content-item">
+                                <label>Biển số
+                                    <input type="text" placeholder="Ví dụ: 15A-12345" name="bienso" readonly value="{{car.bienso}}">
+                                </label>
+                            </p>
+
+                            <p class="content-item">
+
+                                <label>Giá bán
+                                    <input type="text" placeholder="{{car.giaban}} vnđ" name="giaban" required value="{{car.giaban}}">
+                                </label>
+                            </p>
+
+                            <p class="content-item">
+
+                                <label>VideoId
+                                    <input type="text" placeholder="{{car.videoId}}" name="videoId" required value="{{car.videoId}}">
+                                </label>
+                            </p>
+
+                            <button type="submit" class="signup">Sửa</button>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+<style>
+    .signup-wrapper .company-details {
+    background: url(http://img.youtube.com/vi/{{car.videoId}}/maxresdefault.jpg) ;
+    background-size: cover;
+    position: relative;
+}
+</style>

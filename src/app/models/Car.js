@@ -6,13 +6,13 @@ const mongooseDelete = require('mongoose-delete');
 mongoose.plugin(slug);
 
 const Car = new Schema({
-    ten: {type: String},
+    tenxe: {type: String},
     bienso: {type: String},
-    sokm: {type: Number},
-    nam: {type: String},
+    namsx: {type: String},
     videoId: {type: String},
-    hang: {type: String},
-    gia: {type: Number},
+    giaban: {type: String},
+    sdt: {type: String},
+    diachi: {type: String},
     slug: {type: String,slug:'name'}
 },{
     timestamps: true,
