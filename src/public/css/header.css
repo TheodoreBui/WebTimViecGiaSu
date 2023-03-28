@@ -1,0 +1,19 @@
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1; }
+
+.navbar {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.dropdown-menu[data-bs-popper] {
+  margin-top: 13px; }
+
+.user {
+  background-color: black;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px; }

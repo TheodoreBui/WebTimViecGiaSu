@@ -2,6 +2,7 @@ const Car = require('../models/Car')
 const User = require('../models/User')
 const { multipleMongooseToObject } = require('../../util/mongoose')
 const { mongooseToObject } = require('../../util/mongoose')
+const {slogan} = require('../../util/mongoose')
 
 class CarController {
     //[GET]/
@@ -10,7 +11,7 @@ class CarController {
             .then(cars => {
                 // cars = cars.map(course=> course.toObject())
                 res.render('car/home', {
-                    layout: 'main',
+                    layout: 'home',
                     cars: multipleMongooseToObject(cars)
                 }
                 )
@@ -37,7 +38,10 @@ class CarController {
                     videoId: req.body.videoId,
                     sdt: req.cookies.sdtlogin,
                     namsx: req.body.nam,
-                    diachi: user.diachi
+                    diachi: user.diachi,
+                    nguoiban: user.ten,
+                    slug: req.body.ten+'_'+req.body.bienso,
+                    slogan: slogan(req.body.ten)
                 })
                 car.save()
                     .then(() => res.redirect('/home'))
@@ -57,7 +61,6 @@ class CarController {
                 })
             })
             .catch(next)
-
     }
 
     //[GET]/car/trash
@@ -71,14 +74,6 @@ class CarController {
             })
         })
         .catch(next)
-
-        // Car.findDeleted({})
-        //     .then(cars => {
-        //         res.render('car/trash', {
-        //             layout: 'main',
-        //             cars: multipleMongooseToObject(cars)
-        //         })
-        //     })
     }
 
     //[GET]/car/edit/:id

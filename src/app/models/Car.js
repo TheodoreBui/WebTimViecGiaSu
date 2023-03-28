@@ -13,7 +13,9 @@ const Car = new Schema({
     giaban: {type: String},
     sdt: {type: String},
     diachi: {type: String},
-    slug: {type: String,slug:'name'}
+    slogan: {type: String},
+    nguoiban: {type: String},
+    // slug: {type: String,slug:'name'}
 },{
     timestamps: true,
 });

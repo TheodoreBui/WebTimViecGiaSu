@@ -1,71 +1,75 @@
-<form class="container" method="POST" action="/car/action-with-multi-car">
-    <div style="display: flex; justify-content: center;">
-        <h2>Danh sách xe của tôi</h2>
-    </div>
-    {{#if countDeleted}}
-    <div style="display: flex; justify-content: center;">
-        <a href="/car/trash">Thùng rác({{countDeleted}})</a>
-    </div>
-    {{/if}}
+<div class="container">
+    {{!-- <div style="margin:30px auto 100%"> --}}
+        <form method="POST" action="/car/action-with-multi-car">
+            <div style="display: flex; justify-content: center;">
+                <h2>Danh sách xe của tôi</h2>
+            </div>
+            {{#if countDeleted}}
+            <div style="display: flex; justify-content: center;">
+                <a href="/car/trash">Thùng rác({{countDeleted}})</a>
+            </div>
+            {{/if}}
 
-    <div class="mt-4 d-flex">
-        <div class="form-check ">
-            <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
-            <label class="form-check-label" for="checkbox-all">Chọn tất cả</label>
-        </div>
-    </div>
+            <div class="mt-4 d-flex">
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">Chọn tất cả</label>
+                </div>
+            </div>
 
-    <table class="table mt-4">
-        <thead>
-            <tr>
-                <th scope="col">Chọn</th>
-                <th scope="col">#</th>
-                <th scope="col">Tên xe</th>
-                <th scope="col">Biển số</th>
-                <th scope="col">Giá bán</th>
-                <th scope="col">Thời gian tạo</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each cars}}
-            <tr>
-                <td>
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="{{this._id}}" name="carIds[]">
-                    </div>
-                </td>
-                <th scope="row">{{sum @index 1}}</th>
-                <td>{{this.tenxe}}</td>
-                <td>{{this.bienso}}</td>
-                <td>{{this.giaban}}</td>
-                <td>{{this.createdAt}}</td>
-                <td>
-                    <a href="/car/edit/{{this._id}}" class="btn btn-primary">Sửa</a>
-                    <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-car"
-                        data-id="{{this._id}}">Xóa</a>
-                </td>
-            </tr>
-            {{else}}
-            <tr>
-                <td colspan="7" class="text-center">Bạn chưa đăng bán xe nào
-                    <a href="/car/create">Tạo đơn bán</a>
-                </td>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">Chọn</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Tên xe</th>
+                        <th scope="col">Biển số</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Thời gian tạo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cars}}
+                    <tr>
+                        <td>
+                            <div class="form-check ">
+                                <input class="form-check-input" type="checkbox" value="{{this._id}}" name="carIds[]">
+                            </div>
+                        </td>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.tenxe}}</td>
+                        <td>{{this.bienso}}</td>
+                        <td>{{this.giaban}}</td>
+                        <td>{{this.createdAt}}</td>
+                        <td>
+                            <a href="/car/edit/{{this._id}}" class="btn btn-primary">Sửa</a>
+                            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-car"
+                                data-id="{{this._id}}">Xóa</a>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="7" class="text-center">Bạn chưa đăng bán xe nào
+                            <a href="/car/create">Tạo đơn bán</a>
+                        </td>
 
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
 
-    <div class="d-flex">
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-            style="width: 180px;margin-right:  16px;" name="action" required>
-            <option selected value="">Chọn chức năng</option>
-            <option value="delete">Xóa</option>
-        </select>
-        <button class="btn btn-primary disabled" id="submit-btn" type="submit">Thực hiện</button>
-    </div>
-</form>
+            <div class="d-flex">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                    style="width: 180px;margin-right:  16px;" name="action" required>
+                    <option selected value="">Chọn chức năng</option>
+                    <option value="delete">Xóa</option>
+                </select>
+                <button class="btn btn-primary disabled" id="submit-btn" type="submit">Thực hiện</button>
+            </div>
+        </form>
+    {{!-- </div> --}}
+</div>
 
 
 {{!-- confirm delete car --}}

@@ -1,0 +1,12 @@
+.container {
+  padding: 30px 50px; }
+
+.container .heading {
+  font-weight: bold;
+  text-align: center;
+  font-size: 14px; }
+
+.container .description,
+.introWeb > li {
+  font-size: 12px;
+  text-align: justify; }
