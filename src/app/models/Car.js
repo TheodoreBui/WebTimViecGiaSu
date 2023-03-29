@@ -18,6 +18,7 @@ const Car = new Schema({
     // slug: {type: String,slug:'name'}
 },{
     timestamps: true,
+    
 });
 
 Car.plugin(mongooseDelete,{

@@ -5,6 +5,7 @@ const authMiddleWare = require('../middlerware/authentication')
 
 route.get('/create',CarController.create)
 route.post('/create',CarController.postCreate)
+route.post('/search',CarController.search)
 route.post('/action-with-multi-car',CarController.actionWithMultiCar)
 route.get('/stored',CarController.stored)
 route.get('/trash',CarController.trash)

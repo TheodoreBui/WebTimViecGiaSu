@@ -20,6 +20,21 @@ class CarController {
 
     }
 
+    //[POST]/car/search
+    search(req,res,next){
+        const input = req.body.searchCar
+
+        Car.find({tenxe: {$regex: new RegExp(input, 'i')}})
+        .then(cars=>{
+            res.render('car/home',{
+                layout: 'home',
+                cars: multipleMongooseToObject(cars)
+            })
+        })
+        .catch(next)
+        
+    }
+
     //[GET]/car/create
     create(req, res, next) {
         res.render('car/create', {
@@ -113,6 +128,8 @@ class CarController {
             .then(() => res.redirect('back'))
             .catch(next)
     }
+
+    
 
     //[POST]/car/action-with-multi-car
     actionWithMultiCar(req, res, next) {
