@@ -1,4 +1,4 @@
-<div class="containe">
+<div class="container">
     <div class="row ">
         <div class="col-2">
 
@@ -19,7 +19,8 @@
 
                             <div class="row" style="margin-top: 20px;">
                                 <p class="col-sm-4">Giá từ:</p>
-                                <p class="col-sm-8" style="color: red;font-weight: bold;"> {{this.giaban}}<i class="bi bi-currency-dollar"></i></p>
+                                <p class="col-sm-8" style="color: red;font-weight: bold;"> {{this.giaban}}<i
+                                        class="bi bi-currency-dollar"></i></p>
                             </div>
 
                             <div class="row">
@@ -31,11 +32,11 @@
                                 <p class="col-sm-4">Biển số:</p>
                                 <p class="col-sm-8"> {{this.bienso}}</p>
                             </div>
-                            <div class="row">
-                                <p class="col-sm-7"><i class="bi bi-person-circle"></i> : {{this.nguoiban}}</p>
-                                <p class="col-sm-5"> <i class="bi bi-geo-fill"></i> : {{this.diachi}}</p>
-                            </div>
-                            <button class="btn btn-primary mt-2">Liên hệ</button>
+
+                            <p><i class="bi bi-person-circle"></i> : {{this.nguoiban}}</p>
+                            <p><i class="bi bi-geo-fill"></i> : {{this.diachi}}</p>
+
+                            <a class="btn btn-primary mt-2" href="tel:{{this.sdt}}">Liên hệ</a>
                         </div>
                     </article>
                 </div>

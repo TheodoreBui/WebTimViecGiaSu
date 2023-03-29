@@ -6,8 +6,8 @@
   z-index: 1; }
 
 .navbar {
-  padding-left: 30px;
-  padding-right: 30px; }
+  padding-left: 129px;
+  padding-right: 116px; }
 
 .dropdown-menu[data-bs-popper] {
   margin-top: 13px; }
@@ -17,3 +17,6 @@
   border-radius: 100%;
   width: 30px;
   height: 30px; }
+
+.dropdown-menu {
+  --bs-dropdown-min-width: 9rem; }

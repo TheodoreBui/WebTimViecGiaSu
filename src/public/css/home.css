@@ -1,7 +1,15 @@
+.about {
+  background-color: rgba(95, 95, 91, 0.104); }
+
+.slide-show {
+  max-width: 1220px;
+  margin: 70px auto 10px;
+  height: 300px; }
+
 .cards {
   position: relative;
-  width: 387px;
-  height: 289px;
+  width: 316px;
+  height: 280px;
   color: #2e2d31;
   background: #131313;
   overflow: hidden;
@@ -21,8 +29,8 @@
   bottom: 0;
   /* edit the width to fit card */
   width: 100%;
-  padding-top: 13px;
-  padding-bottom: 5px;
+  padding-top: 21px;
+  padding-bottom: 25px;
   padding-left: 33px;
   padding-right: 33px;
   background: #f2f2f2;
