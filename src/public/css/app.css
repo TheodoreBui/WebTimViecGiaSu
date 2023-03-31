@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; }
+
+p {
+  padding: 0;
+  margin: 0; }
+
 header {
   position: fixed;
   top: 0;

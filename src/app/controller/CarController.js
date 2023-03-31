@@ -2,7 +2,9 @@ const Car = require('../models/Car')
 const User = require('../models/User')
 const { multipleMongooseToObject } = require('../../util/mongoose')
 const { mongooseToObject } = require('../../util/mongoose')
-const {slogan} = require('../../util/mongoose')
+const { slogan } = require('../../util/mongoose')
+const { mongooseToArray } = require('../../util/mongoose')
+const { mongooseFilerPrice } = require('../../util/mongoose')
 
 class CarController {
     //[GET]/
@@ -20,21 +22,6 @@ class CarController {
 
     }
 
-    //[POST]/car/search
-    search(req,res,next){
-        const input = req.body.searchCar
-
-        Car.find({tenxe: {$regex: new RegExp(input, 'i')}})
-        .then(cars=>{
-            res.render('car/home',{
-                layout: 'home',
-                cars: multipleMongooseToObject(cars)
-            })
-        })
-        .catch(next)
-        
-    }
-
     //[GET]/car/create
     create(req, res, next) {
         res.render('car/create', {
@@ -44,6 +31,37 @@ class CarController {
 
     //[POST]/car/create
     postCreate(req, res, next) {
+        const nam = req.body.nam
+        const bienso = req.body.bienso
+        const gia = req.body.gia
+        const regexNumber = /[0123456789]/g
+
+
+        if (nam.length !== 4 || nam.match(regexNumber).length !== 4) {
+            res.render('car/create', {
+                layout: 'main',
+                errorNam: 'Năm sai định dạng',
+                ten: req.body.ten,
+                bienso: req.body.bienso,
+                gia: req.body.gia,
+                videoId: req.body.videoId,
+            })
+            return
+        }
+
+        if (isNaN(gia) || isNaN(parseFloat(gia))) {
+            res.render('car/create', {
+                layout: 'main',
+                errorGia: 'Giá bán sai định dạng',
+                ten: req.body.ten,
+                bienso: req.body.bienso,
+                nam: req.body.nam,
+                videoId: req.body.videoId,
+            })
+            return
+        }
+
+
         User.findOne({ sdt: req.cookies.sdtlogin })
             .then(user => {
                 const car = new Car({
@@ -55,7 +73,7 @@ class CarController {
                     namsx: req.body.nam,
                     diachi: user.diachi,
                     nguoiban: user.ten,
-                    slug: req.body.ten+'_'+req.body.bienso,
+                    slug: req.body.ten + '_' + req.body.bienso,
                     slogan: slogan(req.body.ten)
                 })
                 car.save()
@@ -80,15 +98,15 @@ class CarController {
 
     //[GET]/car/trash
     trash(req, res, next) {
-        Promise.all([Car.findDeleted({}), Car.countDocuments({sdt: req.cookies.sdtlogin})])
-        .then(([cars, count]) => {
-            res.render('car/trash', {
-                layout: 'main',
-                cars: multipleMongooseToObject(cars),
-                count
+        Promise.all([Car.findDeleted({}), Car.countDocuments({ sdt: req.cookies.sdtlogin })])
+            .then(([cars, count]) => {
+                res.render('car/trash', {
+                    layout: 'main',
+                    cars: multipleMongooseToObject(cars),
+                    count
+                })
             })
-        })
-        .catch(next)
+            .catch(next)
     }
 
     //[GET]/car/edit/:id
@@ -129,7 +147,41 @@ class CarController {
             .catch(next)
     }
 
-    
+    //[POST]/car/search
+    search(req, res, next) {
+        const input = req.body.searchCar
+
+        Car.find({ tenxe: { $regex: new RegExp(input, 'i') } })
+            .then(cars => {
+                res.render('car/home', {
+                    layout: 'home',
+                    cars: multipleMongooseToObject(cars)
+                })
+            })
+            .catch(next)
+
+    }
+
+    //[POST]/car/filter
+    filter(req, res, next) {
+        const arrFrice = mongooseFilerPrice(mongooseToArray(req.body.price))
+        Car.find(
+            {
+                $or: [
+                    {giaban: { $gte: arrFrice[0] }},
+                    {giaban: { $lte: arrFrice[1] }},
+                    {giaban: { $gte: arrFrice[2] }}                   
+                ],
+                tenxe: { $in: mongooseToArray(req.body.company).map(car => new RegExp(car, 'i')) }
+            }
+
+        ).then(cars => {
+            res.render('car/home', {
+                layout: 'home',
+                cars: multipleMongooseToObject(cars)
+            })
+        }).catch(next)
+    }
 
     //[POST]/car/action-with-multi-car
     actionWithMultiCar(req, res, next) {
@@ -145,7 +197,7 @@ class CarController {
                     .catch(next)
                 break
             case 'destroy':
-                Car.deleteOne({ _id: { $in: req.body.carIds } })
+                Car.deleteMany({ _id: { $in: req.body.carIds } })
                     .then(() => res.redirect('back'))
                     .catch(next)
                 break

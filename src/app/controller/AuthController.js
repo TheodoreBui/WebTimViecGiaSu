@@ -86,7 +86,7 @@ class AuthController {
                         });
                     }
                     else {
-                        res.cookie('sdtlogin', users.sdt, { maxAge: 900000, httpOnly: true })
+                        res.cookie('sdtlogin', users.sdt, { maxAge: 90000000000, httpOnly: true })
                         res.redirect('/home')
                     }
                 }

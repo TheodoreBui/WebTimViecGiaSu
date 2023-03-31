@@ -1,3 +1,5 @@
+const { default: mongoose } = require("mongoose")
+
 module.exports = {
     multipleMongooseToObject: (mongooses) => {
         return mongooses.map(mongoose => mongoose.toObject())
@@ -26,7 +28,41 @@ module.exports = {
             case 'rolls-royce' : return 'Trusted to Deliver Excellence'
             case 'bugatti' : return 'Breaking New Dimensions'
             default: return 'Xe của người Việt'
+        }      
+    },
+    mongooseToArray: (mongoose)=>{
+        if(typeof mongoose === 'string'){
+            const arr =[mongoose]
+            return arr
         }
-        
+        return mongoose
+    },
+    mongooseFilerPrice: (mongoose)=>{
+        let arr =[]
+
+        if (mongoose[0] == 0){
+            arr.push(0)
+            arr.push(0)
+            arr.push(0)
+            return arr
+        } 
+        else {
+            arr.push(999999999999)
+            if(mongoose[0] == 3000001){
+                arr.push(0)
+                arr.push(3000001)
+                return arr
+            }
+            else {
+                arr.push(mongoose[mongoose.length-2])
+                if(mongoose[mongoose.length-1]==3000001) arr.push(mongoose[mongoose.length-1])
+                else {
+                    arr.pop()
+                    arr.push(mongoose[mongoose.length-1])
+                    arr.push(999999999999)
+                }
+            }
+        }
+        return arr
     }
 }

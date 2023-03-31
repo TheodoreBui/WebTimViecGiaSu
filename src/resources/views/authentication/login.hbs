@@ -18,7 +18,7 @@
             <h5>Login</h5>
             <p>Don't have an account? <a href="/register">Creat Your Account</a> it takes less than a minute</p>
             {{#if error}}
-                <div class="alert alert-secondary" role="alert">{{error}}</div>
+                <div style="color: red;">{{error}}</div>
             {{/if}}
             <div class="inputs">
                 <input type="text" placeholder="Tài khoản" name="sdt" value="{{sdt}}">

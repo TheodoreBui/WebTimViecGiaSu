@@ -84,3 +84,24 @@
     opacity: 1;
     transition-delay: .25s;
 }
+
+
+//bộ lọc
+
+.container .filter{
+    background-color: #f8f8f8;
+}
+
+.filter p{
+    font-weight: bold;
+}
+
+.filter input{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.filter-price{
+    margin-top: 22px;
+    margin-bottom: 22px;
+}

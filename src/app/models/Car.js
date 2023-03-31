@@ -10,7 +10,7 @@ const Car = new Schema({
     bienso: {type: String},
     namsx: {type: String},
     videoId: {type: String},
-    giaban: {type: String},
+    giaban: {type: Number},
     sdt: {type: String},
     diachi: {type: String},
     slogan: {type: String},
