@@ -5,6 +5,7 @@ const { mongooseToObject } = require('../../util/mongoose')
 const { slogan } = require('../../util/mongoose')
 const { mongooseToArray } = require('../../util/mongoose')
 const { mongooseFilerPrice } = require('../../util/mongoose')
+const { mongooseViewPrice } = require('../../util/mongoose')
 
 class CarController {
     //[GET]/
@@ -74,7 +75,8 @@ class CarController {
                     diachi: user.diachi,
                     nguoiban: user.ten,
                     slug: req.body.ten + '_' + req.body.bienso,
-                    slogan: slogan(req.body.ten)
+                    slogan: slogan(req.body.ten),
+                    viewPrice: mongooseViewPrice(gia)
                 })
                 car.save()
                     .then(() => res.redirect('/home'))

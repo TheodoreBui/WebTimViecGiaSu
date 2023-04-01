@@ -15,10 +15,9 @@ const Car = new Schema({
     diachi: {type: String},
     slogan: {type: String},
     nguoiban: {type: String},
-    // slug: {type: String,slug:'name'}
+    viewPrice: {type: String},
 },{
     timestamps: true,
-    
 });
 
 Car.plugin(mongooseDelete,{

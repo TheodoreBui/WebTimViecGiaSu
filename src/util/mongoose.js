@@ -30,6 +30,21 @@ module.exports = {
             default: return 'Xe của người Việt'
         }      
     },
+    mongooseViewPrice: (gia)=>{
+        let arr = [...gia]
+        arr.reverse()
+
+        let viewPrice = []
+        let dem = 0
+        for (let i of arr){
+            dem++
+            viewPrice.push(i)
+            if(dem % 3 == 0) viewPrice.push('.')
+        }
+        if(gia.length % 3 == 0) viewPrice.pop()
+        viewPrice.reverse()
+        return viewPrice.join('')
+    },
     mongooseToArray: (mongoose)=>{
         if(typeof mongoose === 'string'){
             const arr =[mongoose]
