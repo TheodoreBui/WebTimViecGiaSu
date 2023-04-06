@@ -1,0 +1,6 @@
+1. sửa navbar
+2. thêm các trang trên thanh navbar
+3. thêm trang chi tiết xe
+4. sửa slide-show
+5. tách trang sản phẩm riêng, xây dựng lại trang home
+6. thêm tính năng sắp xếp
