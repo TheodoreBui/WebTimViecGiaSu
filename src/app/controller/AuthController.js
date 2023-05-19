@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Admin = require('../models/Admin')
 const { multipleMongooseToObject } = require('../../util/mongoose')
 
 class AuthController {
@@ -14,14 +15,14 @@ class AuthController {
 
     //[POST]/check (signup)
     check(req, res, next) {
-        var value = req.body.sdt + ' ' + req.body.password;
+        var value = req.body.user + ' ' + req.body.password;
 
-        User.findOne({ sdt: req.body.sdt })
+        User.findOne({ user: req.body.user })
             .then(user => {
                 if (user) {
                     res.render('authentication/register', {
                         layout: 'login',
-                        error: 'Số điện thoại đã tồn tài. Vui lòng đăng nhập !!',
+                        error: 'Tài khoản đã tồn tài. Vui lòng đăng nhập !!',
                         values: req.body
                     })
                 }
@@ -47,19 +48,20 @@ class AuthController {
     //[POST]/signup/:value
     signup(req, res, next) {
         const arr = req.params.value.split(' ')
-        const sdtt = arr[0]
+        const user = arr[0]
         const passwordd = arr[1]
 
-        const user = new User({
-            sdt: sdtt,
+        const userr = new User({
+            user: user,
+            sdt: req.body.sdt,
             password: passwordd,
             ten: req.body.ten,
             tuoi: req.body.tuoi,
             diachi: req.body.diachi,
         })
-        user.save()
+        userr.save()
             .then(() => {
-                res.cookie('sdtlogin',sdtt)
+                res.cookie('user', user)
                 res.redirect('/home')
             })
             .catch(next)
@@ -67,36 +69,50 @@ class AuthController {
 
     //[POST]/login
     login(req, res, next) {
-        User.findOne({ sdt: req.body.sdt })
-            .then(users => {
-                if (!users) {
-                    res.render('authentication/login', {
-                        layout: 'login',
-                        error: 'Tài khoản không tồn tại',
-                        sdt: req.body.sdt,
-                        password: req.body.password
-                    });
+        Promise.all([Admin.findOne({ user: req.body.user }), User.findOne({ user: req.body.user })])
+            .then(([admins, users]) => {
+                
+                if (admins && admins.password === req.body.password) {
+                    res.cookie('admin', admins.user, { maxAge: 90000000000, httpOnly: true })
+                    res.redirect('/admin/car/stored')
+
                 } else {
-                    if (req.body.password !== users.password) {
+                    if (!users) {
                         res.render('authentication/login', {
                             layout: 'login',
-                            error: 'Mật khẩu sai',
-                            sdt: req.body.sdt,
+                            error: 'Tài khoản không tồn tại',
+                            user: req.body.user,
                             password: req.body.password
                         });
-                    }
-                    else {
-                        res.cookie('sdtlogin', users.sdt, { maxAge: 90000000000, httpOnly: true })
-                        res.redirect('/home')
+                    } else {
+                        if (req.body.password !== users.password) {
+                            res.render('authentication/login', {
+                                layout: 'login',
+                                error: 'Mật khẩu sai',
+                                user: req.body.user,
+                                password: req.body.password
+                            });
+                        }
+                        else {
+                            res.cookie('user', users.user, { maxAge: 90000000000, httpOnly: true })
+                            res.redirect('/home')
+                        }
                     }
                 }
+
             })
             .catch(next)
     }
 
     //[GET]/logout
     logout(req, res, next) {
-        res.clearCookie('sdtlogin');
+        res.clearCookie('user');
+        res.redirect('/')
+    }
+
+    //[GET]/logoutAdmin
+    logoutAdmin(req, res, next) {
+        res.clearCookie('admin');
         res.redirect('/')
     }
 }

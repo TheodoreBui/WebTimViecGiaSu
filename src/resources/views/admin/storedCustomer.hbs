@@ -1,0 +1,95 @@
+<div class="container">
+    <div style="margin: 80px 0  60px">
+        <form method="POST" action="/car/action-with-multi-car">
+            <div style="display: flex; justify-content: center;">
+                <h2>Danh sách khách hàng</h2>
+            </div>
+            {{#if countDeleted}}
+            <div style="display: flex; justify-content: center;">
+                <a href="/admin/customer/trash">Thùng rác({{countDeleted}})</a>
+            </div>
+            {{/if}}
+
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tài khoản</th>
+                        <th scope="col">Mật khẩu</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Tuổi</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each customers}}
+                    <tr>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.user}}</td>
+                        <td>{{this.password}}</td>
+                        <td>{{this.ten}}</td>
+                        <td>{{this.tuoi}}</td>
+                        <td>{{this.sdt}}</td>
+                        <td>{{this.diachi}}</td>
+                        <td>
+                            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-car"
+                                data-id="{{this._id}}">Xóa</a>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="8" class="text-center">Chưa có khách hàng nào</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+           
+        </form>
+    {{!-- </div> --}}
+</div>
+
+
+{{!-- confirm delete car --}}
+<div class="modal fade" id="delete-car" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Bạn chắc chắn muốn xóa chiếc xe này?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-delete-car">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- form ảo --}}
+<form name="form-delete" method="POST"></form>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var carId;
+        const deleteForm = document.forms['form-delete']
+        const deleteCar = document.getElementById('delete-car')
+        const checkBoxAll = $('#checkbox-all')
+        const carCheckBox = $('input[name="carIds[]"]')
+        const submitBtn = $('#submit-btn')
+
+        deleteCar.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget
+            carId = button.getAttribute('data-id')
+        })
+        document.getElementById('btn-delete-car').onclick = () => {
+            deleteForm.action = '/admin/customer/delete/' + carId + '?_method=DELETE'
+            deleteForm.submit()
+        }
+
+
+    })
+</script>

@@ -1,5 +1,5 @@
 const Car = require('../models/Car')
-const User = require('../models/User')
+const Cart = require('../models/Cart')
 const { multipleMongooseToObject } = require('../../util/mongoose')
 const { mongooseToObject } = require('../../util/mongoose')
 const { slogan } = require('../../util/mongoose')
@@ -9,10 +9,9 @@ const { mongooseViewPrice } = require('../../util/mongoose')
 
 class CarController {
     //[GET]/
-    index(req, res, next) {
-        Car.find({})
+    home(req, res, next) {
+        Car.find({ status: { $ne: 'hired' } }).limit(3)
             .then(cars => {
-                // cars = cars.map(course=> course.toObject())
                 res.render('car/home', {
                     layout: 'home',
                     cars: multipleMongooseToObject(cars)
@@ -20,13 +19,63 @@ class CarController {
                 )
             })
             .catch(error => next(error))
-
     }
 
+    //[GET]/
+    getList(req, res, next) {
+        Car.find({ status: { $ne: 'hired' } })
+            .then(cars => {
+                res.render('car/list', {
+                    layout: 'main',
+                    cars: multipleMongooseToObject(cars)
+                }
+                )
+            })
+            .catch(error => next(error))
+    }
+    //[GET]/car/cart
+    cart(req, res, next) {
+        Cart.find({ user: req.cookies.user })
+            .then(carts => {
+                let arr = []
+                carts.forEach(cart => arr.push(cart.maXe))
+
+                Car.find({ _id: { $in: arr } })
+                    .then(cars => {
+                        res.render('car/cart', {
+                            layout: 'main',
+                            cars: multipleMongooseToObject(cars)
+                        })
+                    })
+                    .catch(next)
+            })
+            .catch(next)
+    }
+
+    //[GET]/car/addcart/:id
+    addcart(req, res, next) {
+        const cart = new Cart({
+            user: req.cookies.user,
+            maXe: req.params.id
+        })
+        cart.save()
+            .then(() => res.redirect('back'))
+            .catch(next)
+    }
+
+    //[GET]/car/deletecart/:id
+    deletecart(req, res, next) {
+        Cart.deleteOne({
+            user: req.cookies.user,
+            maXe: req.params.id
+        })
+        .then(() => res.redirect('back'))
+        .catch(next)
+    }
     //[GET]/car/create
     create(req, res, next) {
-        res.render('car/create', {
-            layout: 'main'
+        res.render('admin/create', {
+            layout: 'admin'
         })
     }
 
@@ -62,26 +111,18 @@ class CarController {
             return
         }
 
-
-        User.findOne({ sdt: req.cookies.sdtlogin })
-            .then(user => {
-                const car = new Car({
-                    tenxe: req.body.ten,
-                    bienso: req.body.bienso,
-                    giaban: req.body.gia,
-                    videoId: req.body.videoId,
-                    sdt: req.cookies.sdtlogin,
-                    namsx: req.body.nam,
-                    diachi: user.diachi,
-                    nguoiban: user.ten,
-                    slug: req.body.ten + '_' + req.body.bienso,
-                    slogan: slogan(req.body.ten),
-                    viewPrice: mongooseViewPrice(gia)
-                })
-                car.save()
-                    .then(() => res.redirect('/home'))
-                    .catch(next)
-            })
+        const car = new Car({
+            tenxe: req.body.ten,
+            bienso: req.body.bienso,
+            giaban: req.body.gia,
+            videoId: req.body.videoId,
+            namsx: req.body.nam,
+            lanbanh: req.body.lanbanh,
+            loaixe: req.body.loaixe,
+            slogan: slogan(req.body.ten),
+        })
+        car.save()
+            .then(() => res.redirect('/admin/car/stored'))
             .catch(next)
     }
 
@@ -114,8 +155,8 @@ class CarController {
     //[GET]/car/edit/:id
     edit(req, res, next) {
         Car.findById(req.params.id)
-            .then(car => res.render('car/edit', {
-                layout: 'main',
+            .then(car => res.render('admin/edit', {
+                layout: 'admin',
                 car: mongooseToObject(car)
             }))
             .catch(next)
@@ -131,14 +172,14 @@ class CarController {
     //[PUT]/car/edit/:id
     putEdit(req, res, next) {
         Car.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.redirect('/car/stored'))
+            .then(() => res.redirect('/admin/car/stored'))
             .catch(next)
     }
 
     //[DELETE]/car/delete/:id
     delete(req, res, next) {
         Car.delete({ _id: req.params.id })
-            .then(() => res.redirect('/car/stored'))
+            .then(() => res.redirect('/admin/car/stored'))
             .catch(next)
     }
 
@@ -151,12 +192,15 @@ class CarController {
 
     //[POST]/car/search
     search(req, res, next) {
-        const input = req.body.searchCar
+        const input = req.body.input
 
-        Car.find({ tenxe: { $regex: new RegExp(input, 'i') } })
+        Car.find({
+            tenxe: { $regex: new RegExp(input, 'i') },
+            status: { $ne: 'hired' }
+        })
             .then(cars => {
-                res.render('car/home', {
-                    layout: 'home',
+                res.render('car/list', {
+                    layout: 'main',
                     cars: multipleMongooseToObject(cars)
                 })
             })
@@ -170,16 +214,18 @@ class CarController {
         Car.find(
             {
                 $or: [
-                    {giaban: { $gte: arrFrice[0] }},
-                    {giaban: { $lte: arrFrice[1] }},
-                    {giaban: { $gte: arrFrice[2] }}                   
+                    { giaban: { $gte: arrFrice[0] } },
+                    { giaban: { $lte: arrFrice[1] } },
+                    { giaban: { $gte: arrFrice[2] } }
                 ],
-                tenxe: { $in: mongooseToArray(req.body.company).map(car => new RegExp(car, 'i')) }
+                tenxe: { $in: mongooseToArray(req.body.company).map(car => new RegExp(car, 'i')) },
+                loaixe: { $in: mongooseToArray(req.body.type).map(car => new RegExp(car, 'i')) },
+                status: { $ne: 'hired' }
             }
 
         ).then(cars => {
-            res.render('car/home', {
-                layout: 'home',
+            res.render('car/list', {
+                layout: 'main',
                 cars: multipleMongooseToObject(cars)
             })
         }).catch(next)

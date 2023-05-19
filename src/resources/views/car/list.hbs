@@ -1,0 +1,109 @@
+<div class=" list">
+    <div class="banner">
+        <h1>THẾ GIỚI XE</h1>
+        <p>Cung cấp những thứ bạn cần, thỏa mãn những thứ bạn muốn</p>
+    </div>
+    <div class="content-car">
+        <div class="filter-car">
+            <form action="/car/filter" method="POST">
+                <h2>TÌM XE</h2>
+                <select name="company" class="select">
+                    <option value=" ">Hãng xe</option>
+                    <option value="audi"> Audi</option>
+                    <option value="porche"> Porche</option>
+                    <option value="rolls-royce"> Rolls-royce</option>
+                    <option value="mercedes"> Mercedes</option>
+                    <option value="bugatti"> Bugatti</option>
+                    <option value="lamborghini"> Lamborghini</option>
+                    <option value="lexus"> Lexus</option>
+                    <option value="toyota"> Toyota</option>
+                    <option value="hyundai"> Hyundai</option>
+                    <option value="mazda"> Mazda</option>
+                    <option value="peogeot"> Peogeot</option>
+                    <option value="vinfat"> Vinfat</option>
+                </select>
+
+                <select name="type" class="select">
+                    <option value="">Loại xe</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="suv">SUV</option>
+                    <option value="pickup">Bán tải</option>
+                    <option value="crossover">Crossover</option>
+                    <option value="supercar">Siêu xe</option>
+                    <option value="electriccar">Xe điện</option>
+                </select>
+
+                <select name="price" class="select">
+                    <option value="0">Giá xe</option>
+                    <option value="50000">
+                        < 50.000</option>
+                    <option value="100000">
+                        < 100.000</option>
+                    <option value="200000">
+                        < 200.000</option>
+                    <option value="500000">
+                        < 500.000 </option>
+                    <option value="1000000">
+                        < 1.000.000</option>
+                    <option value="3000000">
+                        < 3.000.000</option>
+                    <option value="3000001"> > 3.000.000</option>
+                </select>
+                <button type="submit" class="btn-filter select" id="filter-btn">Lọc</button>
+            </form>
+        </div>
+
+        <div class="main-list">
+            <form method="post" action="/car/search" class="search-sticky">
+                <input type="text" placeholder="Search comapny or vehicles" name="input">
+                <button class="normal" type="submit">Tìm kiếm</button>
+            </form>
+
+            <div class="list-car">
+                {{#each cars}}
+                <div class="item-car">
+                    <article class="cards mt-4">
+                        <div class="temporary_text">
+                            <img src="http://img.youtube.com/vi/{{this.videoId}}/maxresdefault.jpg" class="card-img-top"
+                                alt="{{this.name}}">
+                        </div>
+                        <div class="card_content" style="padding-bottom: 10px;">
+                            <span class="card_title">{{this.tenxe}} </span>
+                            <span class="card_subtitle">{{slogan this.tenxe}} </span>
+
+                            <div class="row" style="margin-top: 20px;">
+                                <p class="col-sm-4">Giá từ:</p>
+                                <p class="col-sm-8" style="color: red;font-weight: bold;"> {{price this.giaban}}<i
+                                        class="bi bi-currency-dollar"></i></p>
+                            </div>
+
+                            <div class="row">
+                                <p class="col-sm-4">Sx năm:</p>
+                                <p class="col-sm-8"> {{this.namsx}}</p>
+                            </div>
+
+                            <div class="row">
+                                <p class="col-sm-4">Biển số:</p>
+                                <p class="col-sm-8"> {{this.bienso}}</p>
+                            </div>
+
+                            <div class="row">
+                                <p class="col-sm-4">Lăn bánh:</p>
+                                <p class="col-sm-8"> {{this.lanbanh}} (km)</p>
+                            </div>
+
+                            <div class="d-flex mt-2">
+                                <a class="btn add-cart" href="/car/addcart/{{this._id}}"><i class="bi bi-cart-plus"></i>Thêm giỏ hàng</a>
+                                <a class="btn buy-car" href="/admin/contract/require/{{this._id}}">Mua ngay</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,31 +1,122 @@
-.header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+// .header {
+//     position: fixed;
+//     top: 0;
+//     right: 0;
+//     left: 0;
+//     z-index: 1;
+// }
+
+// .navbar {
+//     padding-left: 129px;
+//     padding-right: 116px;
+// }
+
+// .dropdown-menu[data-bs-popper] {
+//     margin-top: 13px;
+// }
+
+// .user {
+//     background-color: black;
+//     border-radius: 100%;
+//     width: 30px;
+//     height: 30px;
+// }
+
+// .dropdown-menu {
+//     --bs-dropdown-min-width: 9rem;
+// }
+
+// .nav-item:hover{
+//     opacity: 0.8;
+// }
+
+
+// .nav-item{
+//     position: relative;
+// }
+// .content-item{
+//     display: none;
+//     position: absolute;
+//     z-index: 1;
+//     width: 200px;
+//     background-color: rgb(49, 48, 48);
+//     top: 46px;
+//     border-radius: 4%;
+//     box-shadow: inset;
+// }
+// .content-item a{
+//     display: block;
+//     text-decoration: none;
+//     color: antiquewhite;
+//     padding: 8px 16px;
+// }
+// .content-item a:hover{
+//     background-color: #d7dadd;
+//     color: rgb(46, 45, 45);
+// }
+// // .content-item a:first-child{
+// //     padding-top: 16px;
+// // }.content-item a:last-child{
+// //     padding-bottom: 16px;
+// // }
+// .nav-item:hover .content-item{
+//     display: block;
+// }
+* {
+	box-sizing: border-box;
+	margin:0px;
+}
+
+#menu {
+    padding: 0 120px;
+	width: 100%;
+	font-family: Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 550;
+	display: flex;
+	justify-content: space-between;
+}
+
+#menu ul {
+	display: flex;
+	justify-content: left;
+}
+#menu>ul>li{
+	padding: 25px 25px;
+	list-style: none;
+	position: relative;
+}
+#menu ul li:hover .content-item{
+    display: block;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+    opacity: 0.8;
+}
+#menu img{
+	width: 146px;
+    height: 46px;
+	margin-right: 25px;
+}
+
+.content-item{
+    display: none;
+    position: absolute;
     z-index: 1;
+    width: 200px;
+    background-color: #fff;
+    top: 72px;
+    border-radius: 4%;
+    box-shadow: inset;
 }
-
-.navbar {
-    padding-left: 129px;
-    padding-right: 116px;
+li>a:hover .content-item{
+    display: block;
 }
-
-.dropdown-menu[data-bs-popper] {
-    margin-top: 13px;
-}
-
-.user {
-    background-color: black;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-}
-
-.dropdown-menu {
-    --bs-dropdown-min-width: 9rem;
-}
-
-.nav-item:hover{
-    opacity: 0.7;
+.content-item a{
+    margin: 15px;
+    font-weight: 400;
 }

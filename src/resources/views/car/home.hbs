@@ -1,101 +1,47 @@
 <div class="container">
-    <div class="row ">
-        <div class="col-2 filter mt-4 mb-4 ">
-            <form action="/car/filter" method="POST">
-                <div class="filter-company">
-                    <p>Hãng xe</p>
-                    <input type="checkbox" value=" " name="company"> <label>Tất cả</label><br>
-                    <input type="checkbox" value="audi" name="company"> <label>Audi</label><br>
-                    <input type="checkbox" value="porche" name="company"> <label>Porche</label><br>
-                    <input type="checkbox" value="rolls-royce" name="company"> <label>Rolls-royce</label><br>
-                    <input type="checkbox" value="mercedes" name="company"> <label>Mercedes</label><br>
-                    <input type="checkbox" value="bugatti" name="company"> <label>Bugatti</label><br>
-                    <input type="checkbox" value="lamborghini" name="company"> <label>Lamborghini</label><br>
-                    <input type="checkbox" value="lexus" name="company"> <label>Lexus</label><br>
-                    <input type="checkbox" value="toyota" name="company"> <label>Toyota</label><br>
-                    {{!-- <input type="checkbox" value="hyundai" name="company"> <label>Hyundai</label><br> --}}
-                    {{!-- <input type="checkbox" value="peogeot" name="company"> <label>Peogeot</label><br> --}}
-                    <input type="checkbox" value="vinfat" name="company"> <label>Vinfat</label><br>
+    <h3>Sản phẩm nổi bật</h3>
+    <div class="row">
+        {{#each cars}}
+        <div class="col-sm-6 col-lg-4">
+            <article class="cards mt-4">
+                <div class="temporary_text">
+                    <img src="http://img.youtube.com/vi/{{this.videoId}}/maxresdefault.jpg" class="card-img-top"
+                        alt="{{this.name}}">
                 </div>
+                <div class="card_content">
+                    <span class="card_title">{{this.tenxe}} </span>
+                    <span class="card_subtitle">{{slogan this.tenxe}} </span>
 
-                <div class="filter-price">
-                    <p>Mức giá</p>
-                    <input type="checkbox" name="price" value="0"> <label>Tất cả </label><br>
-                    <input type="checkbox" name="price" value="200000"> <label>Dưới 200.000 <i
-                            class="bi bi-currency-dollar"></i> </label><br>
-                    <input type="checkbox" name="price" value="500000"> <label>Dưới 500.000 <i
-                            class="bi bi-currency-dollar"></i> </label><br>
-                    <input type="checkbox" name="price" value="1000000"> <label>Dưới 1.000.000 <i
-                            class="bi bi-currency-dollar"></i> </label><br>
-                    <input type="checkbox" name="price" value="3000000"> <label>Dưới 3.000.000 <i
-                            class="bi bi-currency-dollar"></i> </label><br>
-                    <input type="checkbox" name="price" value="3000001"> <label>Trên 3.000.000 <i
-                            class="bi bi-currency-dollar"></i> </label>
+                    <div class="row" style="margin-top: 20px;">
+                        <p class="col-sm-4">Giá từ:</p>
+                        <p class="col-sm-8" style="color: red;font-weight: bold;"> {{price this.giaban}}<i
+                                class="bi bi-currency-dollar"></i></p>
+                    </div>
+
+                    <div class="row">
+                        <p class="col-sm-4">Sx năm:</p>
+                        <p class="col-sm-8"> {{this.namsx}}</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="col-sm-4">Biển số:</p>
+                        <p class="col-sm-8"> {{this.bienso}}</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="col-sm-4">Lăn bánh:</p>
+                        <p class="col-sm-8"> {{this.lanbanh}} (km)</p>
+                    </div>
+
+                    <div class="d-flex mt-2">
+                        <a class="btn add-cart" href="/car/addcart/{{this._id}}"><i class="bi bi-cart-plus"></i>Thêm giỏ hàng</a>
+                        <a class="btn buy-car" href="/admin/contract/require/{{this._id}}">Mua ngay</a>
+                    </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary disabled" id="filter-btn">Lọc</button>
-            </form>
-
+            </article>
         </div>
+        {{/each}}
 
-
-        <div class="col-10 mb-4">
-            <div class="row">
-                {{#each cars}}
-                <div class="col-sm-6 col-lg-4">
-                    <article class="cards mt-4">
-                        <div class="temporary_text">
-                            <img src="http://img.youtube.com/vi/{{this.videoId}}/maxresdefault.jpg" class="card-img-top"
-                                alt="{{this.name}}">
-                        </div>
-                        <div class="card_content">
-                            <span class="card_title">{{this.tenxe}} </span>
-                            <span class="card_subtitle">{{this.slogan}} </span>
-
-                            <div class="row" style="margin-top: 20px;">
-                                <p class="col-sm-4">Giá từ:</p>
-                                <p class="col-sm-8" style="color: red;font-weight: bold;"> {{this.viewPrice}}<i
-                                        class="bi bi-currency-dollar"></i></p>
-                            </div>
-
-                            <div class="row">
-                                <p class="col-sm-4">Sx năm:</p>
-                                <p class="col-sm-8"> {{this.namsx}}</p>
-                            </div>
-
-                            <div class="row">
-                                <p class="col-sm-4">Biển số:</p>
-                                <p class="col-sm-8"> {{this.bienso}}</p>
-                            </div>
-
-                            <p><i class="bi bi-person-circle"></i> : {{this.nguoiban}}</p>
-                            <p><i class="bi bi-geo-fill"></i> : {{this.diachi}}</p>
-
-                            <a class="btn btn-primary mt-2" href="tel:{{this.sdt}}">Liên hệ</a>
-                        </div>
-                    </article>
-                </div>
-                {{/each}}
-            </div>
-        </div>
     </div>
+    <a class=" all btn btn-primary" href="/car/list">Xem tất cả</a>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const checkBoxCompany = $('input[name="company"]')
-        const checkBoxPrice = $('input[name="price"]')
-        const filterBtn = $('#filter-btn')
-
-        checkBoxCompany.change(function () {
-            renderBtnFilter()
-        })
-        checkBoxPrice.change(function () {
-            renderBtnFilter()
-        })
-        function renderBtnFilter() {
-            if ($('input[name="company"]:checked').length > 0 && $('input[name="price"]:checked').length > 0) filterBtn.removeClass('disabled')
-            else filterBtn.addClass('disabled')
-        }
-    })
-</script>

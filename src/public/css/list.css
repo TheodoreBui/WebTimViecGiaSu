@@ -1,0 +1,115 @@
+.list .banner {
+  height: 450px;
+  background: url(https://www.bugatti.com/fileadmin/_processed_/sei/p1/se-image-c9424e1152cd71317f96406084727952.webp);
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  margin-top: 71px; }
+
+.banner > h1 {
+  color: #fff;
+  font-size: 55px;
+  font-weight: 700;
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.banner > p {
+  color: #fff;
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-shadow: 0 0 1px #000; }
+
+.content-car {
+  display: flex;
+  padding: 24px 148px;
+  background: url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_1.jpg) left bottom no-repeat, url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_2.jpg) right bottom no-repeat #f4f8f9; }
+
+.content-car .filter-car {
+  flex: 3; }
+
+.content-car .filter-car > form {
+  position: sticky;
+  top: 70px; }
+
+.content-car .main-list {
+  flex: 7;
+  margin-left: 40px; }
+
+.content-car .list-car {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.content-car .filter-car h2 {
+  margin-left: 75px; }
+
+.content-car .filter-car .btn-filter {
+  background-color: #1A6FB7;
+  border: none;
+  color: #fff; }
+
+.content-car .filter-car .select {
+  width: 85%;
+  height: 48px;
+  padding: 6px 12px;
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.5; }
+
+.list-car .item-car {
+  width: 45%; }
+
+.main-list input {
+  height: 3.125rem;
+  padding: 0 1.25em;
+  font-size: 14px;
+  width: 83%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; }
+
+.main-list button {
+  background-color: #1A6FB7;
+  color: #fff;
+  white-space: nowrap;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.main-list .normal {
+  font-size: 14px;
+  padding: 15px 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.2s; }
+
+.main-list .normal:hover {
+  opacity: 0.9; }
+
+.main-list .search-sticky {
+  position: sticky;
+  top: 73px;
+  z-index: 1; }
+
+.list-car .btn {
+  font-size: 14px; }
+
+.list-car .add-cart {
+  color: #fff;
+  background-color: #1A6FB7;
+  margin-right: 16px; }
+
+.list-car .buy-car {
+  background-color: rgba(26, 111, 183, 0);
+  color: #1A6FB7;
+  border: 1px solid #1A6FB7; }
+
+.list-car .add-cart i {
+  margin-right: 8px; }

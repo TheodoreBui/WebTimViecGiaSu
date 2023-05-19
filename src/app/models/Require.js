@@ -5,19 +5,15 @@ const mongooseDelete = require('mongoose-delete');
 
 mongoose.plugin(slug);
 
-const User = new Schema({
-    user: {type: String},
-    sdt: {type: String},
-    password: {type: String},
-    ten: {type: String},
-    diachi: {type: String},
-    tuoi: {type: Number},
+const Require = new Schema({
+    maXe: {type: String},
+    maKh: {type: String},
 },{
     timestamps: true,
 });
 
-User.plugin(mongooseDelete,{
+Require.plugin(mongooseDelete,{
     overrideMethods: 'all',
     deletedAt: true,
 })
-module.exports = mongoose.model('User',User);
+module.exports = mongoose.model('Require',Require);

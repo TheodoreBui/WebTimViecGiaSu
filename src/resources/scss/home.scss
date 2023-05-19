@@ -1,16 +1,16 @@
 .about{
-    background-color: rgba(95, 95, 91, 0.104);
+    background-color: #EDEFF5;
 }
 
 .slide-show{
-    max-width: 1220px;
-    margin: 70px auto 10px;
-    height: 300px;
+    width: 100%;
+    margin: 72px auto 0px;
+    height: 450px;
 }
 
 .cards {
     position: relative;
-    width: 316px;
+    // width: 316px;
     height: 280px;
     color: #2e2d31;
     background: #131313;
@@ -39,7 +39,7 @@
     padding-bottom: 25px;
     padding-left: 33px;
     padding-right: 33px;
-    background: #f2f2f2;
+    background: #EDEFF5;
     border-top-left-radius: 6px;
     /* edit here to change the height of the content box */
     transform: translateY(150px);
@@ -55,7 +55,7 @@
     height: 100px;
     transform: rotate(-175deg);
     border-radius: 50%;
-    box-shadow: inset 48px 48px #f2f2f2;
+    box-shadow: inset 48px 48px #EDEFF5;
 }
 
 .card_title {
@@ -85,23 +85,33 @@
     transition-delay: .25s;
 }
 
-
-//bộ lọc
-
-.container .filter{
-    background-color: #f8f8f8;
+.main h3{
+     text-align: center;
 }
 
-.filter p{
-    font-weight: bold;
+.main .all{
+    margin-top: 40px;
+    font-size: 15px;
+    padding: 12px 30px;
+    border: none;
+    margin-left: 530px;
+    background-color: #2E2B4A;
 }
 
-.filter input{
-    margin-left: 15px;
-    margin-top: 10px;
+.card_content .btn{
+    font-size: 14px;
 }
 
-.filter-price{
-    margin-top: 22px;
-    margin-bottom: 22px;
+.card_content .add-cart{
+    color: #fff;
+    background-color: #1A6FB7;
+    margin-right: 16px;
+}
+.card_content .buy-car{
+    background-color: rgba(26,111,183,0);
+    color: #1A6FB7;
+    border: 1px solid #1A6FB7;
+}
+.card_content .add-cart i{
+    margin-right: 8px;
 }

@@ -1,0 +1,61 @@
+.news {
+  text-align: center;
+  padding: 40px 120px; }
+
+.news h3 {
+  margin-bottom: 40px; }
+
+.grid-news {
+  display: grid;
+  grid-gap: 24px; }
+
+.item {
+  border-radius: 8px;
+  text-align: center;
+  position: relative; }
+
+.item1 {
+  grid-row: 1/3;
+  grid-column: 1/3;
+  height: 450px;
+  background-image: url(https://static.carmudi.vn/wp-content/uploads/2023-05/R1Dse5VdaC_760_570.jpg);
+  background-size: cover; }
+
+.item2 {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  background-image: url(https://static.carmudi.vn/wp-content/uploads/2023-05/qp6KKy0aca_388_291.jpg);
+  background-size: cover; }
+
+.item3 {
+  grid-row: 2/3;
+  grid-column: 3/4;
+  background-image: url(https://static.carmudi.vn/wp-content/uploads/2023-05/VARQWHAsJR_388_291.jpg);
+  background-size: cover; }
+
+.item .text-news {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  width: 100%;
+  padding: 24px;
+  font-size: 24px;
+  text-align: left; }
+
+.item .text-news2 {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  width: 100%;
+  padding: 0 16px;
+  font-size: 18px;
+  text-align: left; }
+
+.news .btn {
+  margin-top: 40px;
+  font-size: 15px;
+  padding: 12px 30px;
+  border: none;
+  background-color: #2E2B4A; }

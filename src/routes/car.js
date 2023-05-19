@@ -4,6 +4,10 @@ const CarController = require('../app/controller/CarController')
 const authMiddleWare = require('../middlerware/authentication')
 
 route.get('/create',CarController.create)
+route.get('/list',CarController.getList)
+route.get('/cart',CarController.cart)
+route.get('/addcart/:id',CarController.addcart)
+route.get('/deletecart/:id',CarController.deletecart)
 route.post('/create',CarController.postCreate)
 route.post('/search',CarController.search)
 route.post('/filter',CarController.filter)
@@ -15,7 +19,7 @@ route.get('/restore/:id',CarController.restore)
 route.put('/edit/:id',CarController.putEdit)
 route.delete('/delete/:id',CarController.delete)
 route.delete('/destroy/:id',CarController.destroy)
-route.get('/',authMiddleWare.requireAuth,CarController.index)
+route.get('/',authMiddleWare.requireAuth,CarController.home)
 
 module.exports= route;
 

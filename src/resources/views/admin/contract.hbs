@@ -1,0 +1,41 @@
+<div class="container">
+    <div style="margin: 80px 0  60px">
+        <form method="POST" action="/car/action-with-multi-car">
+            <div style="display: flex; justify-content: center;">
+                <h2>Danh Sách xe đã bán</h2>
+            </div>
+
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tài khoản</th>
+                        <th scope="col">Khách hàng</th>
+                        <th scope="col">Tên xe</th>
+                        <th scope="col">Biển số</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Thời gian</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each contracts}}
+                    <tr>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.maKh}}</td>
+                        <td>{{this.tenKh}}</td>
+                        <td>{{this.tenXe}}</td>
+                        <td>{{this.bienso}}</td>
+                        <td>{{this.giaban}}</td>
+                        <td>{{this.createdAt}}</td>
+                        
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>    
+           
+       
+        </form>
+    {{!-- </div> --}}
+</div>
+

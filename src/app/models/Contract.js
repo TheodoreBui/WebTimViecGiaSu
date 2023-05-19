@@ -5,19 +5,18 @@ const mongooseDelete = require('mongoose-delete');
 
 mongoose.plugin(slug);
 
-const User = new Schema({
-    user: {type: String},
-    sdt: {type: String},
-    password: {type: String},
-    ten: {type: String},
-    diachi: {type: String},
-    tuoi: {type: Number},
+const Contract = new Schema({
+    maKh: {type: String},
+    tenKh: {type: String},
+    tenXe: {type: String},
+    bienso: {type: String},
+    giaban: {type: String},
 },{
     timestamps: true,
 });
 
-User.plugin(mongooseDelete,{
+Contract.plugin(mongooseDelete,{
     overrideMethods: 'all',
     deletedAt: true,
 })
-module.exports = mongoose.model('User',User);
+module.exports = mongoose.model('Contract',Contract);

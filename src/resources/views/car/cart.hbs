@@ -1,0 +1,39 @@
+<div class="cart">
+    <h1>Shopping Cart</h1>
+    <div class="list-cart">
+        {{#each cars}}
+        <div class="item-cart">
+            <img src="http://img.youtube.com/vi/{{this.videoId}}/maxresdefault.jpg">
+            <div class="mid">
+                <h3 class="name-car">{{this.tenxe}}</h3>
+                <div class="info">
+                    <div class="info-item">
+                        <div class="key">Giá từ</div>
+                        <div class="" style="color: red;">{{price this.giaban}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="key">Sản xuất</div>
+                        <div class="">{{this.namsx}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="key">Biển số</div>
+                        <div class="">{{this.bienso}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="key">Lăn bánh</div>
+                        <div class="">{{this.lanbanh}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="buttom">
+                {{#if (isEqual this.status 'hired')}}
+                <a class="btn buy-car disabled">Hết hàng</a>
+                {{else}}
+                <a class="btn buy-car" href="/admin/contract/require/{{this._id}}">Mua ngay</a>
+                {{/if}}
+                <a class="btn delete-cart" href="/car/deletecart/{{this._id}}">Xóa</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
