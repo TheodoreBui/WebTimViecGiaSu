@@ -59,7 +59,7 @@ class CarController {
             maXe: req.params.id
         })
         cart.save()
-            .then(() => res.redirect('back'))
+            .then(() => res.redirect('/car/list'))
             .catch(next)
     }
 

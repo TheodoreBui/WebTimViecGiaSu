@@ -89,7 +89,7 @@ class AdminController {
                     maKh: user._id
                 })
                 require.save()
-                    .then(() => res.redirect('back'))
+                    .then(() => res.redirect('/car/list'))
                     .catch(next)
             }).catch(next)
     }
