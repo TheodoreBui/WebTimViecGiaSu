@@ -1,5 +1,5 @@
 <div class="cart">
-    <h1>Shopping Cart</h1>
+    <h1>Đang liên hệ</h1>
     <div class="list-cart">
         {{#each cars}}
         <div class="item-cart">
@@ -26,14 +26,11 @@
                 </div>
             </div>
             <div class="buttom">
-                {{#if (isEqual this.status 'hired')}}
-                <a class="btn buy-car disabled">Hết hàng</a>
-                {{else}}
-                <a class="btn buy-car" href="/admin/contract/require/{{this._id}}">Mua ngay</a>
-                {{/if}}
-                <a class="btn delete-cart" href="/car/deletecart/{{this._id}}">Xóa</a>
+                <a class="btn delete-cart" href="/car/deleterequire/{{this._id}}">Hủy</a>
             </div>
         </div>
+        {{else}}
+        <p style="text-align: center;">Bạn chưa liên hệ mua xe nào <a href="/car/list" style="text-decoration:underline;">Liên hệ ngay</a></p>   
         {{/each}}
     </div>
 </div>

@@ -11,6 +11,8 @@ const Contract = new Schema({
     tenXe: {type: String},
     bienso: {type: String},
     giaban: {type: String},
+    namsx: {type: String},
+    videoId: {type: String}
 },{
     timestamps: true,
 });
@@ -19,4 +21,5 @@ Contract.plugin(mongooseDelete,{
     overrideMethods: 'all',
     deletedAt: true,
 })
+
 module.exports = mongoose.model('Contract',Contract);

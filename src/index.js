@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const { mongooseViewPrice } = require('./util/mongoose')
 const { slogan } = require('./util/mongoose')
+const { formatDate } = require('./util/mongoose')
 
 app.use(cookieParser())
 
@@ -33,8 +34,8 @@ app.engine(
             sum: (a, b) => a + b,
             price: (gia) => mongooseViewPrice(gia),
             slogan: (input) => slogan(input),
-            isEqual: (value1,value2,options)=> value1 === value2
-            
+            isEqual: (value1,value2,options)=> value1 === value2,
+            formatDate: (date) => formatDate(date)
         }
     }),
 )

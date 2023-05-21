@@ -1,11 +1,13 @@
 const Car = require('../models/Car')
 const Cart = require('../models/Cart')
+const Contract = require('../models/Contract')
+const User = require('../models/User')
 const { multipleMongooseToObject } = require('../../util/mongoose')
 const { mongooseToObject } = require('../../util/mongoose')
 const { slogan } = require('../../util/mongoose')
 const { mongooseToArray } = require('../../util/mongoose')
 const { mongooseFilerPrice } = require('../../util/mongoose')
-const { mongooseViewPrice } = require('../../util/mongoose')
+const Require = require('../models/Require')
 
 class CarController {
     //[GET]/
@@ -69,9 +71,19 @@ class CarController {
             user: req.cookies.user,
             maXe: req.params.id
         })
-        .then(() => res.redirect('back'))
-        .catch(next)
+            .then(() => res.redirect('back'))
+            .catch(next)
     }
+    
+    //[GET]/car/deleterequire/:id
+    deleterequire(req,res,next){
+        Promise.all([Car.findByIdAndUpdate(req.params.id, { $set: { status: 'still' } }),
+                    Require.deleteOne({user: req.cookies.user,maXe: req.params.id})
+                ]).then(([])=>res.redirect('back'))
+                .catch(next)
+
+    }
+
     //[GET]/car/create
     create(req, res, next) {
         res.render('admin/create', {
@@ -252,6 +264,37 @@ class CarController {
             default:
                 res.json({ message: 'Action Invalid' })
         }
+    }
+
+    //[GET]/car/buy
+    buy(req, res, next) {
+        Contract.find({ maKh: req.cookies.user })
+            .then(contracts => {
+                res.render('car/buy', {
+                    layout: 'main',
+                    contracts: multipleMongooseToObject(contracts)
+                })
+            })
+            .catch(next)
+    }
+
+    //[GET]/car/contact
+    contact(req, res, next) {
+        Require.find({ user: req.cookies.user })
+            .then(requires => {
+                let arr = []
+                requires.forEach(require => arr.push(require.maXe))
+
+                Car.find({ _id: { $in: arr } })
+                    .then(cars => {
+                        res.render('car/contact', {
+                            layout: 'main',
+                            cars: multipleMongooseToObject(cars)
+                        })
+                    })
+                    .catch(next)
+            })
+            .catch(next)
     }
 }
 

@@ -86,7 +86,8 @@ class AdminController {
             .then(([user]) => {
                 const require = new Require({
                     maXe: req.params.id,
-                    maKh: user._id
+                    maKh: user._id,
+                    user: req.cookies.user
                 })
                 require.save()
                     .then(() => res.redirect('/car/list'))
@@ -129,7 +130,9 @@ class AdminController {
                     tenKh: user.ten,
                     tenXe: car.tenxe,
                     bienso: car.bienso,
-                    giaban: car.giaban
+                    giaban: car.giaban,
+                    namsx: car.namsx,
+                    videoId: car.videoId
                 })
                 contract.save()
                     .then(() => res.redirect('/admin/contract'))

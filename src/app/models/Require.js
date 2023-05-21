@@ -8,6 +8,7 @@ mongoose.plugin(slug);
 const Require = new Schema({
     maXe: {type: String},
     maKh: {type: String},
+    user: {type: String},
 },{
     timestamps: true,
 });

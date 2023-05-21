@@ -1,0 +1,32 @@
+<div class="cart" style="    background-image: linear-gradient(90deg, #33A7BE,#52B07F);">
+    <h1>Xe đã mua</h1>
+    <div class="list-cart">
+        {{#each contracts}}
+        <div class="item-cart">
+            <img src="http://img.youtube.com/vi/{{this.videoId}}/maxresdefault.jpg">
+            <div class="mid" style="width: 80%;">
+                <h3 class="name-car">{{this.tenXe}}</h3>
+                <div class="info">
+                    <div class="info-item">
+                        <div class="key">Giá</div>
+                        <div class="">{{price this.giaban}} ($)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="key">Sản xuất</div>
+                        <div class="">{{this.namsx}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="key">Biển số</div>
+                        <div class="">{{this.bienso}}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="key">Thời gian mua</div>
+                        <div class="">{{formatDate this.createdAt}} </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        {{/each}}
+    </div>
+</div>
