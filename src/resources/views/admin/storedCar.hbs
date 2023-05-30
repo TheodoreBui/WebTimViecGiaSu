@@ -24,9 +24,9 @@
                         <th scope="col">#</th>
                         <th scope="col">Tên xe</th>
                         <th scope="col">Biển số</th>
-                        <th scope="col">Giá bán</th>
+                        <th scope="col">Giá bán ($)</th>
                         <th scope="col">Năm sx</th>
-                        <th scope="col">Lăn bánh</th>
+                        <th scope="col">Lăn bánh (km)</th>
                         <th scope="col">Trạng thái</th>
                         <th></th>
                     </tr>
@@ -42,9 +42,9 @@
                         <th scope="row">{{sum @index 1}}</th>
                         <td>{{this.tenxe}}</td>
                         <td>{{this.bienso}}</td>
-                        <td>{{this.giaban}}</td>
+                        <td>{{price this.giaban}}</td>
                         <td>{{this.namsx}}</td>
-                        <td>{{this.lanbanh}}</td>
+                        <td>{{price this.lanbanh}}</td>
                         <td>
                             {{#if (isEqual this.status 'check')}}
                             <a href="/admin/check/{{this._id}}" class="btn btn-success">Phê duyệt</a>

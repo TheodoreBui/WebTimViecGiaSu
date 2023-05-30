@@ -14,9 +14,9 @@
                         <th scope="col">Tên xe</th>
                         <th scope="col">Biển số</th>
                         <th scope="col">Năm sx</th>
-                        <th scope="col">Giá bán</th>
+                        <th scope="col">Giá bán ($)</th>
                         <th scope="col">Thời gian</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -28,16 +28,11 @@
                         <td>{{this.tenXe}}</td>
                         <td>{{this.bienso}}</td>
                         <td>{{this.namsx}}</td>
-                        <td>{{this.giaban}}</td>
-                        <td>{{this.createdAt}}</td>
-                        
+                        <td>{{price this.giaban}}</td>
+                        <td>{{formatDate this.createdAt}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
-            </table>    
-           
-       
+            </table>
         </form>
-    {{!-- </div> --}}
-</div>
-
+    </div>

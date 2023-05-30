@@ -22,9 +22,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Tên xe</th>
                 <th scope="col">Biển số</th>
-                <th scope="col">Giá bán</th>
+                <th scope="col">Giá bán ($)</th>
                 <th scope="col">Năm sx</th>
-                <th scope="col">Lăn bánh</th>
+                <th scope="col">Lăn bánh (km)</th>
                 <th></th>
             </tr>
         </thead>
@@ -39,9 +39,9 @@
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.tenxe}}</td>
                 <td>{{this.bienso}}</td>
-                <td>{{this.giaban}}</td>
+                <td>{{price this.giaban}}</td>
                 <td>{{this.namsx}}</td>
-                <td>{{this.lanbanh}}</td>
+                <td>{{price this.lanbanh}}</td>
                 <td>
                     <a href="/car/restore/{{this._id}}" class="btn btn-primary">Khôi phục</a>
                     <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-car"
